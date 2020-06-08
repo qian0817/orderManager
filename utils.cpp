@@ -4,6 +4,9 @@
 #include "utils.hpp"
 
 bool isUnsignedInt(const std::string &s) {
+    if (s.empty()) {
+        return false;
+    }
     for (char i : s) {
         if (i > '9' || i < '0') {
             return false;

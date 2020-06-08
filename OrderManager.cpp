@@ -35,6 +35,7 @@ void OrderManager::mainMenu() {
     while (true) {
         welcomeMessage();
         std::string n = readLine();
+        clear();
         if (!isUnsignedInt(n)) {
             std::cout << "输入的不是数字" << std::endl;
             continue;
@@ -68,7 +69,6 @@ void OrderManager::mainMenu() {
             }
                 break;
             case 4: {
-                clear();
                 std::cout << "1.按订单号查询" << std::endl;
                 std::cout << "2.按产品名称查询" << std::endl;
                 std::cout << "3.按公司名称查询" << std::endl;
@@ -77,6 +77,7 @@ void OrderManager::mainMenu() {
                     std::cout << "输入的不是数字" << std::endl;
                     break;
                 }
+                clear();
                 switch (std::stoi(n)) {
                     case 1: {
                         std::cout << "请输入订单编号:";
@@ -116,7 +117,6 @@ void OrderManager::mainMenu() {
 }
 
 void OrderManager::welcomeMessage() {
-    clear();
     std::cout << std::endl << std::endl;
     std::cout << "订单信息管理系统" << std::endl;
     std::cout << "1.添加订单" << std::endl;
@@ -129,12 +129,12 @@ void OrderManager::welcomeMessage() {
 void OrderManager::updateOrder(int orderId) {
     for (Order &order : orderList) {
         if (order.getId() == orderId) {
-            clear();
             std::cout << "1.修改公司名称" << std::endl;
             std::cout << "2.修改商品名称" << std::endl;
             std::cout << "3.修改数量" << std::endl;
             std::cout << "4.修改价格" << std::endl;
             std::string n = readLine();
+            clear();
             if (!isUnsignedInt(n)) {
                 std::cout << "输入的不是数字" << std::endl;
                 return;
@@ -243,7 +243,7 @@ void OrderManager::clear() {
 #ifdef _WIN32
     system("cls");
 #else
-//    system("clear");
+    system("clear");
 #endif
 }
 
