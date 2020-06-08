@@ -182,7 +182,7 @@ void OrderManager::updateOrder(int orderId) {
     }
 }
 
-void OrderManager::addOrder(Order &order) {
+void OrderManager::addOrder(const Order &order) {
     for (Order &o : orderList) {
         if (o.getId() == order.getId()) {
             std::cout << "该订单号已经存在" << std::endl;
@@ -213,7 +213,7 @@ void OrderManager::searchOrderByOrderId(int orderId) {
     std::cout << "没有该订单" << std::endl;
 }
 
-void OrderManager::searchOrderByCompanyName(std::string &company_name) {
+void OrderManager::searchOrderByCompanyName(const std::string &company_name) {
     double total = 0;
     std::cout << "编号\t公司名称\t产品名称\t价格\t数量" << std::endl;
     for (Order &order : orderList) {
@@ -225,7 +225,7 @@ void OrderManager::searchOrderByCompanyName(std::string &company_name) {
     std::cout << "总金额为:" << total << std::endl;
 }
 
-void OrderManager::searchOrderByProductName(std::string &product_name) {
+void OrderManager::searchOrderByProductName(const std::string &product_name) {
     std::cout << "编号\t公司名称\t产品名称\t价格\t数量" << std::endl;
     bool hasProduct = false;
     for (Order &order : orderList) {

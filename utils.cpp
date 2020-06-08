@@ -1,7 +1,7 @@
 ﻿//
 // Created by qianlei on 2020/6/8.
 //
-#include "utils.h"
+#include "utils.hpp"
 
 bool isUnsignedInt(const std::string &s) {
     for (char i : s) {
@@ -15,10 +15,10 @@ bool isUnsignedInt(const std::string &s) {
 std::string readLine() {
     std::string s;
     std::getline(std::cin, s);
-    return s;
+    return std::move(s);
 }
 
 bool isDouble(const std::string &s) {
-    std::regex pattern(R"(^(\-)?\d+(\.\d{1,2})?$)");
+    std::regex pattern(R"(\d+(\.\d{1,2})?$)");
     return std::regex_match(s, pattern);
 }

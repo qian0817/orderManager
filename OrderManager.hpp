@@ -7,7 +7,7 @@
 
 #include "Order.hpp"
 #include "List.hpp"
-#include "utils.h"
+#include "utils.hpp"
 #include <fstream>
 
 class OrderManager {
@@ -21,11 +21,11 @@ public:
     void mainMenu();
     OrderManager();
     ~OrderManager();
-private:
+//private:
     /**
      * 输入各信息并计算订单金额
      */
-    void addOrder(Order &order);
+    void addOrder(const Order &order);
     /**
      * 删除不需要的订单
      * @param orderId 订单号
@@ -46,12 +46,12 @@ private:
      * 输入某个公司名称，统计并输出所有订单总额
      * @param company_name 公司名称
      */
-    void searchOrderByCompanyName(std::string &company_name);
+    void searchOrderByCompanyName(const std::string &company_name);
     /**
      * 根据产品名称获取所有的订单
      * @param product_name 产品名称
      */
-    void searchOrderByProductName(std::string &product_name);
+    void searchOrderByProductName(const std::string &product_name);
     /**
      * 清屏
      */

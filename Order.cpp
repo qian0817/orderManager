@@ -20,15 +20,14 @@ std::istream &operator>>(std::istream &stream, Order &o) {
     return stream;
 }
 
-Order::Order(unsigned int id, std::string &companyName, std::string &productName, double price,
+Order::Order(unsigned int id, std::string companyName, std::string productName, double price,
              unsigned int num)
-        : m_id(id), m_company_name(companyName), m_product_name(productName), m_price(price), m_num(num) {}
+        : m_id(id), m_company_name(std::move(companyName)), m_product_name(std::move(productName)), m_price(price),
+          m_num(num) {}
 
 double Order::totalPrice() const {
     return getPrice() * getNum();
 }
-
-Order::Order() : m_id(0), m_company_name(""), m_product_name(""), m_price(0), m_num(0) {}
 
 unsigned int Order::getId() const {
     return m_id;

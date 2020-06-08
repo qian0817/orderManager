@@ -17,8 +17,8 @@ private:
     double m_price;
     unsigned int m_num;
 public:
-    Order(unsigned int id, std::string &companyName, std::string &productName, double price, unsigned int num);
-    Order();
+    explicit Order(unsigned int id = 0, std::string companyName = "", std::string productName = "",
+                   double price = 0, unsigned int num = 0);
     double totalPrice() const;
     friend std::ostream &operator<<(std::ostream &stream, const Order &o);
     friend std::istream &operator>>(std::istream &stream, Order &o);

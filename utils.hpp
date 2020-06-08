@@ -2,8 +2,8 @@
 // Created by qianlei on 2020/6/8.
 //
 
-#ifndef ORDERMANAGER_UTILS_H
-#define ORDERMANAGER_UTILS_H
+#ifndef ORDERMANAGER_UTILS_HPP
+#define ORDERMANAGER_UTILS_HPP
 
 #include <string>
 #include <iostream>
@@ -16,4 +16,4 @@ std::string readLine();
 bool isDouble(const std::string &s);
 
 
-#endif //ORDERMANAGER_UTILS_H
+#endif //ORDERMANAGER_UTILS_HPP
