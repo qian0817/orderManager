@@ -6,16 +6,16 @@
 #define ORDERMANAGER_NODE_HPP
 
 template<typename T>
-class node {
+class Node {
 public:
     T value;
-    node *next;
-    node *prev;
-    explicit node(T value = T(), node<T> *next = nullptr, node<T> *prev = nullptr);
+    Node *next;
+    Node *prev;
+    explicit Node(T value, Node<T> *next = nullptr, Node<T> *prev = nullptr);
 };
 
 template<typename T>
-node<T>::node(T value, node<T> *next, node<T> *prev)
+Node<T>::Node(T value, Node<T> *next, Node<T> *prev)
         :value(value), next(next), prev(prev) {
 }
 

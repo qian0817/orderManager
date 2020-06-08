@@ -1,7 +1,7 @@
-#include "order_manager.hpp"
+#include "OrderManager.hpp"
 
 int main() {
-    order_manager manager;
-    manager.main_menu();
+    OrderManager manager;
+    manager.mainMenu();
     return 0;
 }

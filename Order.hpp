@@ -7,8 +7,9 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
-class order {
+class Order {
 private:
     unsigned int m_id;
     std::string m_company_name;
@@ -16,11 +17,11 @@ private:
     double m_price;
     unsigned int m_num;
 public:
-    order(unsigned int id, std::string &companyName, std::string &productName, double price, unsigned int num);
-    order();
-    double total_price() const;
-    friend std::ostream &operator<<(std::ostream &stream, const order &o);
-    friend std::istream &operator>>(std::istream &stream, order &o);
+    Order(unsigned int id, std::string &companyName, std::string &productName, double price, unsigned int num);
+    Order();
+    double totalPrice() const;
+    friend std::ostream &operator<<(std::ostream &stream, const Order &o);
+    friend std::istream &operator>>(std::istream &stream, Order &o);
     unsigned int getId() const;
     void setId(unsigned int id);
     const std::string &getCompanyName() const;

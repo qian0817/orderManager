@@ -5,23 +5,23 @@
 #ifndef ORDERMANAGER_LIST_HPP
 #define ORDERMANAGER_LIST_HPP
 
-#include "node.hpp"
+#include "Node.hpp"
 
 template<typename T>
-class list {
+class List {
 private:
-    node<T> *head = new node<T>();;
+    Node<T> *head = new Node<T>(T());
 
     //链表迭代器
     class iterator {
     private:
-        node<T> *ptr;
+        Node<T> *ptr;
     public:
-        explicit iterator(node<T> *ptr);
+        explicit iterator(Node<T> *ptr);
         T &operator*() const;
         T *operator->() const;
-        bool operator==(const list<T>::iterator &iter);
-        bool operator!=(const list<T>::iterator &iter);
+        bool operator==(const List<T>::iterator &iter);
+        bool operator!=(const List<T>::iterator &iter);
         iterator &operator++();
         /**
          * 删除迭代器指向的结点
@@ -38,42 +38,41 @@ public:
     int size() const;
     iterator begin();
     iterator end();
-    ~list();
+    ~List();
 };
 
 template<typename T>
-bool list<T>::iterator::operator==(const list<T>::iterator &iter) {
+bool List<T>::iterator::operator==(const List<T>::iterator &iter) {
     return iter.ptr == ptr;
 }
 
 template<typename T>
-T &list<T>::iterator::operator*() const {
+T &List<T>::iterator::operator*() const {
     return ptr->value;
 }
 
 template<typename T>
-bool list<T>::iterator::operator!=(const list<T>::iterator &iter) {
+bool List<T>::iterator::operator!=(const List<T>::iterator &iter) {
     return !(*this == iter);
 }
 
 template<typename T>
-typename list<T>::iterator &list<T>::iterator::operator++() {
+typename List<T>::iterator &List<T>::iterator::operator++() {
     ptr = ptr->next;
     return *this;
 }
 
 template<typename T>
-list<T>::iterator::iterator(node<T> *ptr):ptr(ptr) {}
+List<T>::iterator::iterator(Node<T> *ptr):ptr(ptr) {}
 
 template<typename T>
-T *list<T>::iterator::operator->() const {
+T *List<T>::iterator::operator->() const {
     return &(ptr->value);
 }
 
-
 template<typename T>
-void list<T>::iterator::remove() {
-    node<T> *temp = ptr;
+void List<T>::iterator::remove() {
+    Node<T> *temp = ptr;
     ptr->prev->next = ptr->next;
     if (ptr->next != nullptr) {
         ptr->next->prev = ptr->prev;
@@ -83,8 +82,8 @@ void list<T>::iterator::remove() {
 }
 
 template<typename T>
-void list<T>::add(T value) {
-    auto *temp = new node<T>(value, head->next, head);
+void List<T>::add(T value) {
+    auto *temp = new Node<T>(value, head->next, head);
     head->next = temp;
     if (temp->next != nullptr) {
         temp->next->prev = temp;
@@ -92,27 +91,27 @@ void list<T>::add(T value) {
 }
 
 template<typename T>
-list<T>::~list() {
+List<T>::~List() {
     while (head != nullptr) {
-        node<T> *temp = head;
+        Node<T> *temp = head;
         head = head->next;
         delete temp;
     }
 }
 
 template<typename T>
-typename list<T>::iterator list<T>::begin() {
-    return list::iterator(head->next);
+typename List<T>::iterator List<T>::begin() {
+    return List::iterator(head->next);
 }
 
 template<typename T>
-typename list<T>::iterator list<T>::end() {
-    return list::iterator(nullptr);
+typename List<T>::iterator List<T>::end() {
+    return List::iterator(nullptr);
 }
 
 template<typename T>
-int list<T>::size() const {
-    node<T> *temp = head->next;
+int List<T>::size() const {
+    Node<T> *temp = head->next;
     int size = 0;
     while (temp != nullptr) {
         temp = temp->next;
