@@ -3,15 +3,15 @@
 //
 
 #include "order_manager.hpp"
-//2 test test 20 20
+
 order_manager::order_manager() {
     std::ifstream stream(filename);
     //从文件中读取信息
-//    while (stream && !stream.eof()) {
-//        order o;
-//        stream >> o;
-//        m_list.add(o);
-//    }
+    while (stream && !stream.eof()) {
+        order o;
+        stream >> o;
+        m_list.add(o);
+    }
     stream.close();
 }
 
@@ -203,14 +203,14 @@ void order_manager::search_order_by_company_name(std::string &company_name) {
 
 void order_manager::search_order_by_product_name(std::string &product_name) {
     std::cout << "编号\t公司名称\t产品名称\t价格\t数量" << std::endl;
-    bool flag = true;
+    bool hasProduct = false;
     for (auto &order : m_list) {
         if (order.getProductName() == product_name) {
             std::cout << order << std::endl;
-            flag = false;
+            hasProduct = true;
         }
     }
-    if (flag) {
+    if (!hasProduct) {
         std::cout << "没有符合条件的订单" << std::endl;
     }
 }

@@ -23,7 +23,7 @@ order::order(unsigned int id, std::string &companyName, std::string &productName
           m_num(num) {}
 
 double order::total_price() const {
-    return m_price * m_num;
+    return getPrice() * getNum();
 }
 
 order::order() : m_id(0), m_company_name(""), m_product_name(""), m_price(0), m_num(0) {}
