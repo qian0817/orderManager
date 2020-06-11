@@ -1,7 +1,10 @@
-#include "OrderManager.hpp"
+#include <QtWidgets/QApplication>
+#include "ui/AddOrderFormDialog.h"
+#include "ui/OrderManagerMainView.h"
 
-int main() {
-    OrderManager manager;
-    manager.mainMenu();
-    return 0;
+int main(int argc, char *argv[]) {
+    QApplication application(argc, argv);
+    OrderManagerMainView orderManagerMainView;
+    orderManagerMainView.show();
+    return QApplication::exec();
 }

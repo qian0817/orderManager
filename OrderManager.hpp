@@ -7,25 +7,22 @@
 
 #include "Order.hpp"
 #include "List.hpp"
-#include "utils.hpp"
 #include <fstream>
+#include <regex>
+#include <memory>
 
 class OrderManager {
 private:
     List<Order> orderList;
-    static constexpr const char *filename = "Order.txt";
-public:
-    /**
-    * 主菜单
-    */
-    void mainMenu();
+    static constexpr const char *filename = "order.txt";
     OrderManager();
+public:
+    static OrderManager *getInstance();
     ~OrderManager();
-//private:
     /**
      * 输入各信息并计算订单金额
      */
-    void addOrder(const Order &order);
+    std::string addOrder(const Order &order);
     /**
      * 删除不需要的订单
      * @param orderId 订单号
@@ -35,29 +32,23 @@ public:
      * 修改订单信息
      * @param orderId 订单号
      */
-    void updateOrder(int orderId);
+    std::string updateOrder(Order &newOrder);
     /**
-     * 按条件查询订单
-     * @param orderId 订单号
-     * @return 该订单号的订单信息
+     * 搜索指定编号的订单
+     * @param orderId
+     * @return
      */
-    void searchOrderByOrderId(int orderId);
+    Order searchOrder(int orderId);
     /**
-     * 输入某个公司名称，统计并输出所有订单总额
-     * @param company_name 公司名称
+     * 按条件搜索订单
+     * @param orderId
+     * @param companyName
+     * @param productName
+     * @return
      */
-    void searchOrderByCompanyName(const std::string &company_name);
-    /**
-     * 根据产品名称获取所有的订单
-     * @param product_name 产品名称
-     */
-    void searchOrderByProductName(const std::string &product_name);
-    /**
-     * 清屏
-     */
-    static void clear();
-
-    static void welcomeMessage();
+    List<Order> searchOrder(const std::string &orderId, const std::string &companyName, const std::string &productName);
+private:
+    static std::string checkOrder(const Order &order);
 };
 
 #endif //ORDERMANAGER_ORDERMANAGER_HPP
