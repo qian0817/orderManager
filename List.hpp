@@ -6,7 +6,7 @@
 #define ORDERMANAGER_LIST_HPP
 
 #include "Node.hpp"
-
+#include <iostream>
 template<typename T>
 class List {
 private:
@@ -30,6 +30,9 @@ private:
     };
 
 public:
+    List<T>() = default;
+    List<T>(const List<T> &list);
+    List<T> &operator=(const List<T> &rhs);
     /**
     * 在链表头添加结点
     * @param value 添加的结点的内容
@@ -118,6 +121,36 @@ int List<T>::size() const {
         size++;
     }
     return size;
+}
+template<typename T>
+List<T> &List<T>::operator=(const List<T> &rhs) {
+    if (this != &rhs) {
+        Node<T> *cur = rhs.head->next;
+        Node<T> *temp = head->next;
+        while (temp != nullptr) {
+            Node<T> *n = temp;
+            temp = temp->next;
+            delete n;
+        }
+        temp = head;
+        while (cur != nullptr) {
+            temp->next = new Node<T>(cur->value, nullptr, temp);
+            temp = temp->next;
+            cur = cur->next;
+        }
+    }
+    return *this;
+}
+
+template<typename T>
+List<T>::List(const List<T> &list) {
+    Node<T> *n1 = list.head->next;
+    Node<T> *n2 = head;
+    while (n1 != nullptr) {
+        n2->next = new Node<T>(n1->value, nullptr, n2);
+        n2 = n2->next;
+        n1 = nullptr;
+    }
 }
 
 #endif //ORDERMANAGER_LIST_HPP

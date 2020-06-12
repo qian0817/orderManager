@@ -15,21 +15,21 @@ ShowOrderTable::ShowOrderTable(QWidget *parent) : QTableView(parent) {
     this->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     model->setHorizontalHeaderItem(0, new QStandardItem("订单编号"));
-    model->setHorizontalHeaderItem(1, new QStandardItem("商品名称"));
-    model->setHorizontalHeaderItem(2, new QStandardItem("公司名称"));
+    model->setHorizontalHeaderItem(1, new QStandardItem("公司名称"));
+    model->setHorizontalHeaderItem(2, new QStandardItem("商品名称"));
     model->setHorizontalHeaderItem(3, new QStandardItem("商品价格"));
     model->setHorizontalHeaderItem(4, new QStandardItem("商品数量"));
     model->setHorizontalHeaderItem(5, new QStandardItem("商品总价"));
-
+    this->setSortingEnabled(true);
 //    connect(this, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(slotRowDoubleClicked(const QModelIndex &)));
 }
 
-void ShowOrderTable::setOrder(List <Order> &orderList) {
+void ShowOrderTable::setOrder(List<Order> &orderList) {
     int i = 0;
     for (const Order &order:orderList) {
         model->setItem(i, 0, new QStandardItem(std::to_string(order.getId()).c_str()));
-        model->setItem(i, 1, new QStandardItem(order.getProductName().c_str()));
-        model->setItem(i, 2, new QStandardItem(order.getCompanyName().c_str()));
+        model->setItem(i, 1, new QStandardItem(order.getCompanyName().c_str()));
+        model->setItem(i, 2, new QStandardItem(order.getProductName().c_str()));
         //价格保留小数点2位
         std::string price = std::to_string(order.getPrice());
         price = price.substr(0, price.size() - 4);
@@ -44,6 +44,7 @@ void ShowOrderTable::setOrder(List <Order> &orderList) {
     model->setRowCount(i);
     this->setModel(model);
 }
+
 void ShowOrderTable::mouseDoubleClickEvent(QMouseEvent *event) {
     int row = currentIndex().row();
     int orderId = model->item(row)->text().toInt();
