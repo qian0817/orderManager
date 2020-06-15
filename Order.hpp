@@ -5,9 +5,7 @@
 #ifndef ORDERMANAGER_ORDER_HPP
 #define ORDERMANAGER_ORDER_HPP
 
-#include <iostream>
 #include <string>
-#include <sstream>
 
 class Order {
 private:

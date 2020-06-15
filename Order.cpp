@@ -4,6 +4,7 @@
 
 
 #include "Order.hpp"
+#include <iostream>
 
 std::ostream &operator<<(std::ostream &stream, const Order &o) {
     stream << o.m_id << "\t" << o.m_company_name << "\t"
@@ -13,10 +14,7 @@ std::ostream &operator<<(std::ostream &stream, const Order &o) {
 }
 
 std::istream &operator>>(std::istream &stream, Order &o) {
-    std::string s;
-    std::getline(stream, s);
-    std::stringstream sstream(s);
-    sstream >> o.m_id >> o.m_company_name >> o.m_product_name >> o.m_price >> o.m_num;
+    stream >> o.m_id >> o.m_company_name >> o.m_product_name >> o.m_price >> o.m_num;
     return stream;
 }
 

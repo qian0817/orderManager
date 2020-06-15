@@ -7,9 +7,6 @@
 
 #include "Order.hpp"
 #include "List.hpp"
-#include <fstream>
-#include <regex>
-#include <memory>
 
 class OrderManager {
 private:

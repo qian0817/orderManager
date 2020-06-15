@@ -3,6 +3,9 @@
 //
 
 #include "OrderManager.hpp"
+#include <fstream>
+#include <regex>
+#include <memory>
 
 
 OrderManager::OrderManager() {

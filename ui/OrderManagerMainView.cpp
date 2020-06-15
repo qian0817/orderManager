@@ -5,6 +5,7 @@
 #include "OrderManagerMainView.h"
 
 OrderManagerMainView::OrderManagerMainView(QWidget *parent) : QMainWindow(parent) {
+    this->setWindowTitle("订单管理");
     addOrderButton->move(10, 20);
     addOrderButton->setFixedSize(100, 50);
 
